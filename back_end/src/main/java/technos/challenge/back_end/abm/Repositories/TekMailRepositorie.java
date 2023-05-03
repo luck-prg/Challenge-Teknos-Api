@@ -8,6 +8,8 @@ import org.springframework.stereotype.*;
 import technos.challenge.back_end.domain.Persona;
 import technos.challenge.back_end.domain.TekMail;
 
+import java.util.List;
+
 @Qualifier("jpa")
 public interface TekMailRepositorie extends JpaRepository<TekMail, Long> {
     public Page<TekMail>findByReceptoresContainsAndImportant(Persona receptor,boolean important,Pageable page);
@@ -16,4 +18,6 @@ public interface TekMailRepositorie extends JpaRepository<TekMail, Long> {
     public Page<TekMail>findByReceptoresContainsAndSpam(Persona receptor,boolean spam,Pageable page);
     public Page<TekMail>findByReceptoresContainsAndDraft(Persona receptor,boolean spam,Pageable page);
     public Page<TekMail>findByReceptoresContainsAndStarred(Persona receptor,boolean starred,Pageable page);
+    public Page<TekMail>findByReceptoresContainsAndTrash(Persona receptor,boolean trash,Pageable page);
+    public List<TekMail> findByTrash(boolean trash);
 }

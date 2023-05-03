@@ -16,6 +16,7 @@ import technos.challenge.back_end.domain.TekMail;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -32,6 +33,8 @@ public class GeneralController {
     @Qualifier("jpa")
     FolderRepositorie frepo;
 
+
+    // ----------------------------- GET Y POST DE PERSONAS
     @GetMapping("/usuarios")
     public List<Persona> getPersonas(){
         return prepo.findAll();
@@ -46,8 +49,11 @@ public class GeneralController {
 
     // ALL
     @GetMapping("/messages")
-    public List<TekMail> getTekMails(){
-        return tmrepo.findAll();
+    public List<TekMail> getTekMails(@RequestParam(value = "subject",required = false) String subject_r,
+                                     @RequestParam(value = "from",required = false) String from_name){
+        //eturn tmrepo.findAll();
+        return tmrepo.findAll().stream().filter(tm -> (from_name == null || tm.getEmisor().getName().equals(from_name)) &&
+                   (subject_r == null || tm.getSubject().equals(subject_r))).collect(Collectors.toList());
     }
 
     // INBOX
@@ -154,24 +160,24 @@ public class GeneralController {
         return tmrepo.findAll();
     }
 
-/*
-    ALTER TABLE folders MODIFY id INT AUTO_INCREMENT;
-
-    INSERT INTO folders (name,title,icon) VALUES ('inbox','Inbox','move_to_inbox'),
-    ('sent','Sent','send'),('drafts','Drafts','drafts'),('spam','Spam','info'),('trash','Trash','delete'),
-    ('starred','Starred','star'),('important','Important','label');
-
-    */
+    // ------------- BAJA LÓGICA
+    @DeleteMapping("/messages/delete/{tekmail_id}")
+    public List<TekMail> TrashTekMail(@PathVariable(name = "tekmail_id") Long tekmaill_id){
+        TekMail mail = tmrepo.findById(tekmaill_id).get();
+        mail.setTrash(true);
+        tmrepo.save(mail);
+        return tmrepo.findByTrash(true);
+    }
 
     // ------------------------------------------ Metodos extra
-    public Persona validarUsuario(Persona persona){
+    private Persona validarUsuario(Persona persona){
         Optional<Persona> from = prepo.findPersonaByEmailAndAndName(persona.getEmail(),persona.getName());
         if(!from.isPresent()){
             return prepo.save(persona);
         }
         return from.get();
     }
-    public TekMail determinarPosibleSpam(TekMail mail){
+    private TekMail determinarPosibleSpam(TekMail mail){
         String[] palabrasClaveSpam = {"100% gratuito", "Acción ahora", "Acelera tu metabolismo", "Aumenta tus ventas", "Bajar de peso",
                 "Compra ahora", "Compra segura", "Compre hoy", "Confidencial", "Dinero fácil", "Dinero rápido",
                 "Dinero urgente", "Descarga gratis", "Descuento", "Descuento especial", "Dinero garantizado",
@@ -186,7 +192,7 @@ public class GeneralController {
         }
         return mail;
     }
-    public TekMail determinarSiTieneArchivosAdjuntos(TekMail tekmail,NewTekMailDTO mail){
+    private TekMail determinarSiTieneArchivosAdjuntos(TekMail tekmail,NewTekMailDTO mail){
         if(!mail.getAttachments().isEmpty()){
             tekmail.setHasAttachments(true);
             tekmail.setAttachments(mail.getAttachments());

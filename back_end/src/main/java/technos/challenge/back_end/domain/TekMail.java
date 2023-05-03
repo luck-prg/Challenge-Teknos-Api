@@ -20,7 +20,7 @@ public class TekMail {
     @JoinColumn(name = "emisor_id", referencedColumnName = "id")
     private Persona emisor;
     @ManyToMany
-    @JoinTable(name = "tekmail_persona",
+    @JoinTable(name = "receptores",
             joinColumns = @JoinColumn(name = "tekmail_id"),
             inverseJoinColumns = @JoinColumn(name = "persona_id"))
     private List<Persona> receptores;
@@ -39,15 +39,18 @@ public class TekMail {
     private boolean spam; // Agregado
     @Column(name = "draft_c", columnDefinition = "boolean default false")
     private boolean draft; // Agregado
+    @Column(name = "trash_c", columnDefinition = "boolean default false")
+    private boolean trash; // Agregado
     @Column(name = "important_c", columnDefinition = "boolean default false")
     private boolean important;
     @Column(name = "hasAttachments_c", columnDefinition = "boolean default false")
     private boolean hasAttachments;
     @OneToMany(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "content_id",referencedColumnName = "id")
+    @JoinColumn(name = "tekmail_id",referencedColumnName = "id")
     private List<Attachment> attachments;
     @ElementCollection
-    @CollectionTable(name = "label", joinColumns = @JoinColumn(name = "label_id"))
+    @CollectionTable(name = "labels",
+            joinColumns = @JoinColumn(name = "label_id"))
     @Column(name = "label")
     private Set<String> labels;
 

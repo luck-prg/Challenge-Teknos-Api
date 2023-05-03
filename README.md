@@ -13,7 +13,7 @@ Una vez realizado esto, tenemos 2 opciones para inicialziar nuestra base de dato
 
 1- La primera es ir a la carpeta resources (\back_end\src\main\resources) donde ahi dentro encontraran la carpeta database que contendrá la base de datos exportada, con ella podran importarla y trabajar con algunos datos creados. Para poder importar un archivo sql en mysql recomiendo este video: https://www.youtube.com/watch?v=jTs1nSwAcRM 
 
-Una vez importada es importante revisar el paso 2 que se menciona abajo para la segunda opcion y mantener el estado de hibernate en update.
+Una vez importada es importante revisar el paso 1 que se menciona abajo para la segunda opcion y mantener el estado de hibernate en update.
 
 2- Crear la base de datos sin ningun dato cargado. Se explica a continuacion: 
 

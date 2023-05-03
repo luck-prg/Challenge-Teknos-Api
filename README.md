@@ -13,7 +13,7 @@ Para que la API pueda funcionar tal como se desarrollo se debe utilizar MySql y 
 
 Una vez descargadas las dependencias tenemos 2 opciones para inicialziar nuestra base de datos:
 
-- FORMA 1 : La primera es ir a la carpeta resources (\back_end\src\main\resources) donde dentro encontraran la carpeta database que contendrá la base de datos exportada, con ella podran importarla y trabajar con algunos datos creados. Para poder importar un archivo sql en mysql recomiendo este video: https://www.youtube.com/watch?v=jTs1nSwAcRM 
+- FORMA 1 : La primera es ir a la carpeta resources (\back_end\src\main\resources) donde dentro encontraran la base de datos exportada con el nombre ```challengeteknosbd```, con ella podran importarla y trabajar con algunos datos creados. Para poder importar un archivo sql en mysql recomiendo este video: https://www.youtube.com/watch?v=jTs1nSwAcRM 
 
 Una vez importada es importante revisar el paso 1, que se menciona abajo para la segunda opcion, y mantener el estado de hibernate en update. Una vez hecho esto podremos ejecutar nuestra aplicacion como se menciona en el mismo paso y comenzar a realizar consultas.
 

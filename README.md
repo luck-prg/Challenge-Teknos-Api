@@ -57,3 +57,11 @@ INSERT INTO folders (name,title,icon) VALUES ('inbox','Inbox','move_to_inbox'),(
 
 Una vez finalizado los dos pasos anteriores usted podrá empezar a consumir la API. En el proximo apartado podra ver como realizarlo.
 
+### Biblioteca
+
+### Proximas mejoras
+
+- Manejo de errores.
+- Que cada usuario pueda controlas los tekmails que les enviaron, con esto me refiero a que si dos usuarios son receptores de un mismo mail estos mismos tiene la posibilidad de manejas datos distintos del mail, ya sea porque uno lo destaco y otro no, etc.
+- Mejorar funcionalidad de los tekmail borradores.
+- Realizar consultas mas especificas, para obtener tekmails muchos mas especificos.

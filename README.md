@@ -9,8 +9,13 @@
 Para que la API pueda funcionar tal como se desarrollo se recomienda utilizar MySql y Java. Cabe aclarar que el archivo que se va ejecutar en un IDE deberá poder
 descargar las dependencias que se encuentran dentro del POM.xml, allí se encontrarán aquellas dependencias que fueron utilizadas para realizar la API mediante Spring e Hibernate.
 
+Una vez realizado esto, tenemos 2 opciones para inicialziar nuestra base de datos:
 
-Una vez realizado esto, procedemos a completar los siguientes pasos.
+1- La primera es ir a la carpeta resources (\back_end\src\main\resources) donde ahi dentro encontraran la carpeta database que contendrá la base de datos exportada, con ella podran importarla y trabajar con algunos datos creados. Para poder importar un archivo sql en mysql recomiendo este video: https://www.youtube.com/watch?v=jTs1nSwAcRM 
+
+Una vez importada es importante revisar el paso 2 que se menciona abajo para la segunda opcion y mantener el estado de hibernate en update.
+
+2- Crear la base de datos sin ningun dato cargado. Se explica a continuacion: 
 
 ### PASO 1: Configurando la base de datos
 

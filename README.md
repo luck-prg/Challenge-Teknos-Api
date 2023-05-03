@@ -5,7 +5,6 @@
 
 ### Contexto
 
-
 Para que la API pueda funcionar tal como se desarrollo se recomienda utilizar MySql y Java. Cabe aclarar que el archivo que se va ejecutar en un IDE deberá poder
 descargar las dependencias que se encuentran dentro del POM.xml, allí se encontrarán aquellas dependencias que fueron utilizadas para realizar la API mediante Spring e Hibernate.
 
@@ -62,7 +61,41 @@ INSERT INTO folders (name,title,icon) VALUES ('inbox','Inbox','move_to_inbox'),(
 
 Una vez finalizado los dos pasos anteriores usted podrá empezar a consumir la API. En el proximo apartado podra ver como realizarlo.
 
-### Biblioteca
+### DOCUMENTACIÓN
+
+Para acceder a la api --> http://localhost:8080/teknos/lrodriguez-sm83/api
+
+RESPECTO A LA ENTIDAD PERSONA ( es aquella que se vincula con el tekmail, puede ser emisor de este o mismo ser parte de una lista de receptores)
+
+Get de usuarios http://localhost:8080/teknos/lrodriguez-sm83/api/usuarios
+
+Post de usuarios http://localhost:8080/teknos/lrodriguez-sm83/api/usuario/nuevp
+
+RESPECTO A LA ENTIDAD TEKMAIL
+
+Get todos los tekmails --> http://localhost:8080/teknos/lrodriguez-sm83/api/messages
+
+Para obtener a partir de un usuario en particular que es parte de los receptores de esos mail y sus carpetas se escribe de la siguiente forma : http://localhost:8080/teknos/lrodriguez-sm83/api/messages/{persona_id}/{folder_name}
+
+reemplazamos los valores {persona_id} por un id del usuario y {folder_name} por el nombre de la carpeta. Ejemplo: http://localhost:8080/teknos/lrodriguez-sm83/api/messages/2/important
+
+En el caso de la carpeta Trash solo es necesario acceder al siguiente link: http://localhost:8080/teknos/lrodriguez-sm83/api/messages/trash
+
+Para ver que carpetas existen: http://localhost:8080/teknos/lrodriguez-sm83/api/folders
+
+ALTA Y BAJA DE TEKMAILS
+
+Para dar de alta un tekmail es necesario realizar un POST en: http://localhost:8080/teknos/lrodriguez-sm83/api/messages y enviar un json de la siguiente forma: 
+
+![image](https://user-images.githubusercontent.com/101908731/235946900-3dd926d3-052e-4479-aa2b-665b0639282b.png)
+
+![image](https://user-images.githubusercontent.com/101908731/235946998-97ebdc09-f641-4eec-bcf8-eac2db832762.png)
+
+
+Para realizar una baja logica a un tekmail es necesario insertar el id del tekmail a eliminar y realizar un DELETE en: http://localhost:8080/teknos/lrodriguez-sm83/api/messages/delete/{tekmail_id}
+
+Para realizar una baja permanente a un tekmail es necesario insertar el id del tekmail a eliminar y realizar un DELETE en: http://localhost:8080/teknos/lrodriguez-sm83/api/messages/{tekmail_id}
+
 
 ### Proximas mejoras
 

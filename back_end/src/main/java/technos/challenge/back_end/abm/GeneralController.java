@@ -102,11 +102,9 @@ public class GeneralController {
     }
 
     // TRASH
-    @GetMapping("/messages/{persona_id}/trash")
-    public Page<TekMail> getTrashTekMails(@PathVariable(name = "persona_id") Long persona_id,
-                                          Pageable page){
-        Persona me = prepo.findById(persona_id).get();
-        return tmrepo.findByEmisor(me,page);
+    @GetMapping("/messages/trash")
+    public List<TekMail> getTrashTekMails(){
+        return tmrepo.findByTrash(true);
     }
 
     // STARRED

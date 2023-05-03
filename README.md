@@ -69,7 +69,7 @@ Consultas sobre Usuarios (La entidad que hace referencia a los usuarios esta den
 
 - Get de usuarios ```http://localhost:8080/teknos/lrodriguez-sm83/api/usuarios```
 
-- Post de usuarios ```http://localhost:8080/teknos/lrodriguez-sm83/api/usuario/nuevp```
+- Post de usuarios ```http://localhost:8080/teknos/lrodriguez-sm83/api/usuario/nuevo```
 
 Consultas Get sobre los TEKMAILS: 
 
